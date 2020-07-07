@@ -58,10 +58,41 @@ namespace TechJobsConsole
             return jobs;
         }
 
-        /*
-         * Load and parse data from job_data.csv
-         */
-        private static void LoadData()
+
+
+        // ********* My New Method   "Search all fields not yet implemented."
+        //                                                                *ALL*          *Searchterm*
+        public static List<Dictionary<string, string>> FindByValue(string column, string value)
+        {
+            // Load Data to parse through
+            LoadData();
+
+            // New List of Dictionaries called jobs
+            List<Dictionary<string, string>> jobs = new List<Dictionary<string, string>>();
+
+            // loop through each list
+            foreach (Dictionary<string, string> job in AllJobs)
+            {
+                foreach (KeyValuePair<string, string> jobInfo in job)
+                {
+                    if (jobInfo.Value.ToLower().Contains(value) && !jobs.Contains(job))
+                    {
+                        jobs.Add(job);
+                    }
+                }
+            }
+
+
+            return jobs;
+        }
+
+         //*********
+
+
+/*
+ * Load and parse data from job_data.csv
+ */
+private static void LoadData()
         {
 
             if (IsDataLoaded)

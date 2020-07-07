@@ -56,14 +56,20 @@ namespace TechJobsConsole
 
                     // What is their search term?
                     Console.WriteLine("\nSearch term: ");
-                    string searchTerm = Console.ReadLine();
+                    string searchTerm = Console.ReadLine().ToLower();
 
                     List<Dictionary<string, string>> searchResults;
 
                     // Fetch results
+
+
+
+                    //  Fix this once your code works. Right now it just catches an invalid input that you are trying to make valid
                     if (columnChoice.Equals("all"))
                     {
-                        Console.WriteLine("Search all fields not yet implemented.");
+                        //Console.WriteLine("Search all fields not yet implemented.");
+                        searchResults = JobData.FindByValue(columnChoice, searchTerm);
+                        PrintJobs(searchResults);
                     }
                     else
                     {
@@ -118,7 +124,15 @@ namespace TechJobsConsole
 
         private static void PrintJobs(List<Dictionary<string, string>> someJobs)
         {
-            Console.WriteLine("PrintJobs is not implemented yet");
+            foreach (Dictionary<string, string> job in someJobs)
+            {
+                Console.WriteLine("*****");
+                foreach (KeyValuePair<string, string> thing in job)
+                {
+                    Console.WriteLine("{0}: {1}", thing.Key, thing.Value);
+                }
+                Console.WriteLine("*****\n");
+            }
         }
     }
 }
